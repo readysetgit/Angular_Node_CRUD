@@ -1,0 +1,20 @@
+<table class="table">
+
+  <th>Employee ID</th>
+  <th>Name</th>
+  <th>Address</th>
+  <th>Email</th>
+  
+  <tr *ngFor="let x of employeeList">
+    <td>{{x.EmployeeID}}</td>
+    <td>{{x.Name}}</td>
+    <td>{{x.Address}}</td>
+    <td>{{x.Mobile}}</td>
+    <td><button (click)='updateUser(x)' class='btn btn-success'>Update</button></td>
+    <td><button (click)='deleteUser(x)' class='btn btn-danger'>Delete</button></td>
+  </tr>
+</table>
+
+<div style='margin:auto;width: 200px'>
+  <button routerLink='/createuser'class='btn btn-dark'>Create a New User</button>
+</div>
