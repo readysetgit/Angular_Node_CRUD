@@ -18,6 +18,10 @@ export class EmployeeComponent implements OnInit {
     
       // this.employeeList.Name = data['Name']
       // this.employeeList.
+    this.getEmployees()
+  }
+
+  getEmployees(){
     this.empService.getEmployees().subscribe((data)=>{
       console.log(data)
       this.employeeList =  data
@@ -26,13 +30,15 @@ export class EmployeeComponent implements OnInit {
 
   updateUser(x){
     this.empService.updateEmployee(x).subscribe((data)=>{
-      alert(data['Action'])
+      this.getEmployees()
+      // alert(data['Action'])
     })
   }
 
   deleteUser(x){
     this.empService.deleteEmployee(x).subscribe((data)=>{
-      alert(data['Action'])
+      this.getEmployees()
+      // alert(data['Action'])
     })
   }
 }

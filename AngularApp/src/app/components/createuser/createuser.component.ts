@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { employeeModel } from 'src/app/models/employeeModel';
 import { EmployeeServiceService } from 'src/app/services/employee-service.service';
+import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-createuser',
@@ -13,7 +14,8 @@ export class CreateuserComponent implements OnInit {
   Mobilee=''
   employee:employeeModel=new employeeModel()
 
-  constructor(private empService:EmployeeServiceService) { }
+  constructor(private empService:EmployeeServiceService,
+              private router:Router) { }
 
   ngOnInit() {
   }
@@ -25,7 +27,9 @@ export class CreateuserComponent implements OnInit {
     this.employee.Mobile=this.Mobilee
 
     this.empService.createEmployee(this.employee).subscribe((data)=>{
-      alert(data['Action'])
+      // alert(data['Action'])
+      this.router.navigate(['/home']);
+
     })
   }
   
