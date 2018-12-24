@@ -11,7 +11,7 @@ const sql = require('mssql')
 app.use(bodyParser.urlencoded({ extended: false })) 
 app.use(bodyParser.json())
 
-const port = process.env.PORT || 8081
+const port = process.env.PORT || 4200
 
 //Serving the Angular Production App
 app.use(express.static(__dirname + '/dist/AngularApp'))
@@ -63,11 +63,12 @@ var server = app.listen(port, function () {
     async function updateEmployee_sql () {
         try{
 
+
             console.log('trying')
             let conn = new sql.ConnectionPool(config)
             let pool = await conn.connect()
             let list = await pool.request()
-                .input("EmployeeId",sql.NVarChar(50), user.body.EmployeeID)
+                .input("EmployeeId",sql.Int, user.body.EmployeeID)
                 .input("Name",sql.NVarChar(50), user.body.Name)
                 .input("Address",sql.NVarChar(100), user.body.Address)
                 .input("Mobile",sql.NVarChar(50), user.body.Mobile)
@@ -96,7 +97,7 @@ var server = app.listen(port, function () {
             let conn = new sql.ConnectionPool(config)
             let pool = await conn.connect()
             let list = await pool.request()
-                .input("EmployeeId",sql.NVarChar(50), user.body.EmployeeID)
+                .input("EmployeeId",sql.Int, user.body.EmployeeID)
                 .execute("deleteEmployee")
             console.log(list)
             res.json(list)
