@@ -12,6 +12,6 @@
               <label for="Mobile">Mobile</label>
               <input [(ngModel)]="Mobilee" type="text" id='Name' class="form-control" placeholder="Enter Mobile No.">
             </div>
-        <button (click)='createUser()'type="submit" class="btn btn-primary">Create!</button>
+        <button (click)='createUser()'type="submit" class="btn btn-primary">{{updateFlag? 'Update':'Create!'}}</button>
           </div>
 </div>

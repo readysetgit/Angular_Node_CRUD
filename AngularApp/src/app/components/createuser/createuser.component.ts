@@ -10,6 +10,8 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./createuser.component.scss']
 })
 export class CreateuserComponent implements OnInit {
+  
+  updateFlag = false 
   Namee=''
   Addresss=''
   Mobilee=''
@@ -24,11 +26,18 @@ export class CreateuserComponent implements OnInit {
       console.log('Create User Subscribed',data)
       this.employee = data
 
+      if (this.employee.Name != '')
+        this.updateFlag = true
+      else
+        this.updateFlag = false
+
       this.Namee = this.employee.Name
       this.Addresss = this.employee.Address
       this.Mobilee = this.employee.Mobile
-      
+      console.log('This is the Name', this.Namee)    
     })
+
+    
   }
 
   createUser(){
@@ -37,11 +46,19 @@ export class CreateuserComponent implements OnInit {
     this.employee.Address=this.Addresss
     this.employee.Mobile=this.Mobilee
 
-    this.empService.createEmployee(this.employee).subscribe((data)=>{
-      // alert(data['Action'])
-    this.router.navigate(['/home']);
-
-    })
+    if (!this.updateFlag){
+      this.empService.createEmployee(this.employee).subscribe((data)=>{
+        // alert(data['Action'])
+        this.router.navigate(['/home']);
+      })
+    }
+    else{
+      this.empService.updateEmployee(this.employee).subscribe((data)=>{
+        // alert(data['Action'])
+        this.router.navigate(['/home']);
+      })
+    }
+    
   }
   
 }

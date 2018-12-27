@@ -1,8 +1,8 @@
 export class employeeModel{
    
     EmployeeID:number;
-    Name: string;
-    Address: string
-    Mobile: string;
+    Name: string = '';
+    Address: string='';
+    Mobile: string='';
 
 }
